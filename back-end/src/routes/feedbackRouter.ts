@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import { submitFeedback, getUserFeedback, getAllFeedbacks } from '../controllers/feedbackController';
+import { authMiddleware } from '../middlewares/authMiddleware';
+import { roleMiddleware } from '../middlewares/roleMiddleware';
+import { validate,feedbackSchema } from '../utils/validation';
+const router = Router();
+router.post('/feedback', authMiddleware, roleMiddleware('User'),validate(feedbackSchema), submitFeedback);
+router.get('/feedback/:userid', authMiddleware, getUserFeedback);
+router.get('/feedbacks', authMiddleware, roleMiddleware('Admin'), getAllFeedbacks);
+export default router;

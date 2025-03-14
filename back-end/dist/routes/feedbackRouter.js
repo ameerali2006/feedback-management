@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const feedbackController_1 = require("../controllers/feedbackController");
+const authMiddleware_1 = require("../middlewares/authMiddleware");
+const roleMiddleware_1 = require("../middlewares/roleMiddleware");
+const router = (0, express_1.Router)();
+router.post('/feedback', authMiddleware_1.authMiddleware, (0, roleMiddleware_1.roleMiddleware)('User'), feedbackController_1.submitFeedback);
+router.get('/feedback/:userid', authMiddleware_1.authMiddleware, feedbackController_1.getUserFeedback);
+router.get('/feedbacks', authMiddleware_1.authMiddleware, (0, roleMiddleware_1.roleMiddleware)('Admin'), feedbackController_1.getAllFeedbacks);
+exports.default = router;
