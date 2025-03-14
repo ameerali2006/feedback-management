@@ -1,4 +1,5 @@
 # feedback-management
+ Full Stack project (MERN + MySQL + MongoDB)
 feedback management system typescript
 
 Backend (Node.js, Express, MySQL, MongoDB)
